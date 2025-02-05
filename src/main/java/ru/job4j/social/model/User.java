@@ -1,14 +1,11 @@
 package ru.job4j.social.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Data
-@AllArgsConstructor
+@RequiredArgsConstructor
 @NoArgsConstructor
 @Table(name = "users")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -19,9 +16,12 @@ public class User {
     @EqualsAndHashCode.Include
     private Integer id;
 
+    @NonNull
     private String name;
 
+    @NonNull
     private String email;
 
+    @NonNull
     private String password;
 }

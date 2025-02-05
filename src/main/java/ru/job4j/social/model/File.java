@@ -1,14 +1,11 @@
 package ru.job4j.social.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Data
-@AllArgsConstructor
+@RequiredArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Table(name = "files")
@@ -19,10 +16,13 @@ public class File {
     @EqualsAndHashCode.Include
     private Integer id;
 
+    @NonNull
     private String name;
 
+    @NonNull
     private String path;
 
+    @NonNull
     @ManyToOne
     @JoinColumn(name = "post_id")
     private Post post;

@@ -1,14 +1,11 @@
 package ru.job4j.social.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Data
-@AllArgsConstructor
+@RequiredArgsConstructor
 @NoArgsConstructor
 @Table(name = "posts")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -19,10 +16,13 @@ public class Post {
     @EqualsAndHashCode.Include
     private Integer id;
 
+    @NonNull
     private String title;
 
+    @NonNull
     private String description;
 
+    @NonNull
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

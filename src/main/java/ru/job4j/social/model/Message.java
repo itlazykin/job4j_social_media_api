@@ -1,14 +1,11 @@
 package ru.job4j.social.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Data
-@AllArgsConstructor
+@RequiredArgsConstructor
 @NoArgsConstructor
 @Table(name = "messages")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -19,14 +16,17 @@ public class Message {
     @EqualsAndHashCode.Include
     private Integer id;
 
+    @NonNull
+    @Column(name = "content")
+    private String content;
+
+    @NonNull
     @ManyToOne
     @JoinColumn(name = "user_sender_id")
     private User senderUser;
 
+    @NonNull
     @ManyToOne
     @JoinColumn(name = "user_receiver_id")
     private User receiverUser;
-
-    @Column(name = "content")
-    private String content;
 }
