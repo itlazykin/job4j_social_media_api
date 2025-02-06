@@ -3,6 +3,7 @@ package ru.job4j.social.repository.friend;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import ru.job4j.social.model.Friend;
 import ru.job4j.social.model.User;
 import ru.job4j.social.repository.user.UserRepository;
@@ -12,6 +13,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 
 @SpringBootTest
+@ActiveProfiles("test")
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class FriendRepositoryTest {
 
