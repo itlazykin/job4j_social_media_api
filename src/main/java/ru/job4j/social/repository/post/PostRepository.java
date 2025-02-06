@@ -48,5 +48,4 @@ public interface PostRepository extends JpaRepository<Post, Long> {
             """, nativeQuery = true
     )
     List<Post> findByUserId(@Param("idUsers") List<Long> idUsers);
-
 }
