@@ -14,8 +14,7 @@ public interface TapeRepository extends JpaRepository<Tape, Integer> {
 
     List<Tape> findByUser(User user);
 
-    List<Tape> findByCreatedPostGreaterThanEqualAndCreatedPostLessThanEqual(
-            LocalDateTime startTime, LocalDateTime endTime);
+    List<Tape> findByCreatedPostGreaterThanEqualAndCreatedPostLessThanEqual(LocalDateTime startTime, LocalDateTime endTime);
 
     Page<Tape> findByOrderByCreatedPostDesc(Pageable pageable);
 }
