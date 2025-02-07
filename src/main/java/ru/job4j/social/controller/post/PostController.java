@@ -10,7 +10,7 @@ import ru.job4j.social.service.post.PostService;
 @RestController
 @RequestMapping("/api/post")
 @AllArgsConstructor
-public class PostRestController {
+public class PostController {
 
     private final PostService postService;
 
@@ -33,7 +33,7 @@ public class PostRestController {
     }
 
     @DeleteMapping("/{userId}")
-    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseStatus(HttpStatus.OK)
     public void deletePost(@PathVariable("userId") Integer id) {
         postService.deletePost(id);
     }
