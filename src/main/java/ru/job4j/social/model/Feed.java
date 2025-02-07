@@ -9,9 +9,9 @@ import java.time.LocalDateTime;
 @Data
 @RequiredArgsConstructor
 @NoArgsConstructor
-@Table(name = "tapes")
+@Table(name = "feeds")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Tape {
+public class Feed {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

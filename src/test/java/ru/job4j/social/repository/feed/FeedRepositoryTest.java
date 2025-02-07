@@ -1,26 +1,26 @@
-package ru.job4j.social.repository.tape;
+package ru.job4j.social.repository.feed;
 
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import ru.job4j.social.model.Post;
-import ru.job4j.social.model.Tape;
+import ru.job4j.social.model.Feed;
 import ru.job4j.social.model.User;
 import ru.job4j.social.repository.post.PostRepository;
 import ru.job4j.social.repository.user.UserRepository;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ActiveProfiles("test")
-class TapeRepositoryTest {
+class FeedRepositoryTest {
 
     @Autowired
-    private TapeRepository tapeRepository;
+    private FeedRepository feedRepository;
 
     @Autowired
     private UserRepository userRepository;
@@ -30,14 +30,14 @@ class TapeRepositoryTest {
 
     @BeforeEach
     public void deleteAllTape() {
-        tapeRepository.deleteAll();
+        feedRepository.deleteAll();
         postRepository.deleteAll();
         userRepository.deleteAll();
     }
 
     @AfterAll
     public void deleteAll() {
-        tapeRepository.deleteAll();
+        feedRepository.deleteAll();
         postRepository.deleteAll();
         userRepository.deleteAll();
     }
@@ -48,17 +48,17 @@ class TapeRepositoryTest {
         Post post1 = new Post("postTest1", "test1", user);
         Post post2 = new Post("postTest2", "test2", user);
         Post post3 = new Post("postTest3", "test3", user);
-        Tape tape1 = new Tape(user, post1);
-        Tape tape2 = new Tape(user, post2);
-        Tape tape3 = new Tape(user, post3);
+        Feed feed1 = new Feed(user, post1);
+        Feed feed2 = new Feed(user, post2);
+        Feed feed3 = new Feed(user, post3);
         userRepository.save(user);
         postRepository.saveAll(List.of(post1, post2, post3));
-        tapeRepository.saveAll(List.of(tape1, tape2, tape3));
-        var result = tapeRepository.findById(tape2.getId());
-        var resultList = tapeRepository.findAll();
+        feedRepository.saveAll(List.of(feed1, feed2, feed3));
+        var result = feedRepository.findById(feed2.getId());
+        var resultList = feedRepository.findAll();
         assertThat(result).isPresent();
-        assertThat(result.get()).isEqualTo(tape2);
-        assertThat(tapeRepository.count()).isEqualTo(3);
-        assertThat(resultList).isEqualTo(List.of(tape1, tape2, tape3));
+        assertThat(result.get()).isEqualTo(feed2);
+        assertThat(feedRepository.count()).isEqualTo(3);
+        assertThat(resultList).isEqualTo(List.of(feed1, feed2, feed3));
     }
 }
