@@ -1,9 +1,11 @@
 package ru.job4j.social.service.post;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 import ru.job4j.social.dto.PostDto;
 import ru.job4j.social.dto.UserPostDTO;
 import ru.job4j.social.mappers.PostMapper;
@@ -20,6 +22,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@Validated
 @AllArgsConstructor
 public class PostService {
 
@@ -38,13 +41,16 @@ public class PostService {
     }
 
     @Transactional
-    public Post createNewPostWithoutFile(Post post) {
+    public Post createNewPostWithoutFile(@Valid Post post) {
         return postRepository.save(post);
     }
 
     @Transactional
     public Integer updatePost(Post newPost) {
-        return postRepository.updateTitleAndDescriptionById(newPost.getTitle(), newPost.getDescription(), newPost.getId());
+        return postRepository.updateTitleAndDescriptionById(
+                newPost.getTitle(),
+                newPost.getDescription(),
+                newPost.getId());
     }
 
     @Transactional

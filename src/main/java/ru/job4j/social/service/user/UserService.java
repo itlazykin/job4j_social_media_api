@@ -1,10 +1,12 @@
 package ru.job4j.social.service.user;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 import ru.job4j.social.model.Post;
 import ru.job4j.social.model.User;
 import ru.job4j.social.repository.user.UserRepository;
@@ -12,6 +14,7 @@ import ru.job4j.social.repository.user.UserRepository;
 import java.util.List;
 import java.util.Optional;
 
+@Validated
 @Service
 @AllArgsConstructor
 public class UserService {
@@ -19,7 +22,7 @@ public class UserService {
     private UserRepository userRepository;
 
     @Transactional(propagation = Propagation.REQUIRED)
-    public User createUser(User user) {
+    public User createUser(@Valid User user) {
         return userRepository.save(user);
     }
 

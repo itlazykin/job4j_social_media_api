@@ -1,6 +1,7 @@
 package ru.job4j.social.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 @Entity
@@ -16,9 +17,11 @@ public class Post {
     @EqualsAndHashCode.Include
     private Long id;
 
+    @NotBlank(message = "Заголовок поста не должен быть пустым")
     @NonNull
     private String title;
 
+    @NotBlank(message = "Содержание поста не должно быть пустым")
     @NonNull
     private String description;
 
