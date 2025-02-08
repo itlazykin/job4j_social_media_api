@@ -1,11 +1,15 @@
 package ru.job4j.social.controller.post;
 
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import ru.job4j.social.dto.UserPostDTO;
 import ru.job4j.social.model.Post;
 import ru.job4j.social.service.post.PostService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/post")
@@ -47,5 +51,11 @@ public class PostController {
         }
         postService.deletePost(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/posts")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<List<UserPostDTO>> getListPostsByUserId(@RequestParam List<Long> idUsers) {
+        return ResponseEntity.ok(postService.getUserPostDto(idUsers));
     }
 }
